@@ -19,7 +19,7 @@ COPY /requirements/nginx/tools/nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/config_nginx /etc/nginx/sites-enabled/
 
 #Ports
-EXPOSE 442
+EXPOSE 443
 
 #Start nginx. daemon off to make sure the container doesn't exit right after nginx starts
 CMD ["nginx", "daemon off"]
