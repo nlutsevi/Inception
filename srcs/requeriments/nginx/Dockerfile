@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.11
 
 # Install nginx and openssl. APK with Alpine
 RUN apk update && apk add nginx && apk add openssl
@@ -17,7 +17,7 @@ RUN openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout /etc/nginx/ssl/loc
 
 # Upload new nginx.conf
 COPY /tools/nginx.conf /etc/nginx/
-COPY /tools/default.conf /etc/nginx/http.d/
+COPY /tools/default.conf /etc/nginx/conf.d/
 #Docker-compose
 #COPY /requeriments/nginx/tools/nginx.conf /etc/nginx/
 #COPY /requeriments/nginx/tools/default.conf /etc/nginx/http.d/
@@ -27,7 +27,7 @@ COPY /tools/default.conf /etc/nginx/http.d/
 EXPOSE 443
 
 # Start nginx. daemon off to make sure the container doesn't exit right after nginx starts
-CMD ["nginx;", "-g", "daemon off;"]
+CMD nginx -g 'daemon off;'
 
 
 #https://hub.docker.com/r/yobasystems/alpine-nginx/
