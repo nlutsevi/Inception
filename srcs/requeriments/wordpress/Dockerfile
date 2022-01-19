@@ -1,5 +1,9 @@
 FROM alpine:3.11
 
+ARG DB_NAME
+ARG DB_USER
+ARG DB_PASSWORD
+
 # Define work directory
 RUN mkdir /var/www && \
 	mkdir /var/www/html && \

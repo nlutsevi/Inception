@@ -28,6 +28,3 @@ EXPOSE 443
 
 # Start nginx. daemon off to make sure the container doesn't exit right after nginx starts
 CMD nginx -g 'daemon off;'
-
-
-#https://hub.docker.com/r/yobasystems/alpine-nginx/
