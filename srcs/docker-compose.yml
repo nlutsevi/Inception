@@ -8,7 +8,7 @@ services:
     image: wordpress:php7.3-fpm-alpine
 
     volumes:
-      - data/html://var/www/html
+      - wp_vol:/var/www/html/wordpress
 
     environment:
       WORDPRESS_DB_HOST: 
@@ -20,15 +20,29 @@ services:
     
     restart: always
 
+    expose:
+      - "9000"
+
   nginx:
     image: nginx:alpine
 
     volumes:
-      - nginx:/etc/nginx/conf.d
-      - /data/html:/var/www/html/
+      - wp_vol:/var/www/html/wordpress
 
     ports:
       - 443:443
 
     links:
       - wordpress
+
+# Mounting named volumes can persist data after we restart or remove a container. And they are also accesible by other containers. 
+volumes:
+
+  wp_vol:
+
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/$USER/data/wp_vol
+
