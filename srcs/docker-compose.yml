@@ -5,7 +5,13 @@ version: '3'
 services:
 
   wordpress:
-    image: wordpress:php7.3-fpm-alpine
+    build:
+        context: ./requeriments/wordpress/
+        dockerfile: Dockerfile
+        args:
+            - DB_NAME
+            - DB_USER
+            - DB_PASSWORD 
 
     volumes:
       - wp_vol:/var/www/html/wordpress
@@ -24,7 +30,9 @@ services:
       - "9000"
 
   nginx:
-    image: nginx:alpine
+    build:
+        context: ./requeriments/nginx/
+        dockerfile: Dockerfile
 
     volumes:
       - wp_vol:/var/www/html/wordpress
@@ -44,5 +52,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/$USER/data/wp_vol
+      device: /home/root/data/wp_vol
+      #device: /home/$USER/data/wp_vol
 
