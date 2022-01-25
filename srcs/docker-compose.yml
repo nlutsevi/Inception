@@ -1,6 +1,6 @@
 #https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
 
-version: '3.2'
+version: '3.0'
 
 services:
 
@@ -52,5 +52,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/$USER/data/volumes
+     #device: /home/$USER/data/volumes
+      device: /Users/$USER/data/volumes
 
