@@ -16,8 +16,8 @@ RUN mkdir /etc/nginx/ssl
 RUN openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout /etc/nginx/ssl/localhost_key.pem -out /etc/nginx/ssl/localhost.pem -days 3650 -subj "/C=FR/ST=IDF/L=PARIS/O=42/OU=lm-h/CN=localhost"
 
 # Upload new nginx.conf
-COPY /tools/nginx.conf /etc/nginx/
-COPY /tools/default.conf /etc/nginx/conf.d/
+COPY tools/nginx.conf /etc/nginx/
+COPY tools/default.conf /etc/nginx/conf.d/
 #Docker-compose
 #COPY /requeriments/nginx/tools/nginx.conf /etc/nginx/
 #COPY /requeriments/nginx/tools/default.conf /etc/nginx/http.d/

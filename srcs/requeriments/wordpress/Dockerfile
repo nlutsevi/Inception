@@ -39,7 +39,7 @@ RUN rm -rf latest.tar.gz
 # Listening
 EXPOSE 9000
 
-#RUN echo "listen = 9000" >> /etc/php7/php-fpm.d/www.conf
+RUN echo "listen = 9000" >> /etc/php7/php-fpm.d/www.conf
 
 # PHP-fpm service start
-CMD ["/usr/bin/php", "--nodaemonize"] 
+CMD ["php-fpm7", "--nodaemonize"] 
