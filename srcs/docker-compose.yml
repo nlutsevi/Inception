@@ -4,7 +4,38 @@ version: '3.0'
 
 services:
 
+  mariadb:
+    hostname: mariadb
+
+    build:
+        context: ./requeriments/mariadb/
+        dockerfile: Dockerfile
+        args:
+            - MYSQL_DB_NAME
+            - MYSQL_DB_USER
+            - MYSQL_DB_PASSWORD
+            - MYSQL_DB_ROOT_PASSWORD
+
+    networks:
+      - natinet
+
+    volumes:
+      - db_vol:/var/lib/mysql
+   
+    environment:
+      MYSQL_DATABASE: $MYSQL_DB_NAME
+      MYSQL_USER: $MYSQL_DB_USER
+      MYSQL_PASSWORD: $MYSQL_DB_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_DB_ROOT_PASSWORD
+
+    restart: always
+
+    expose:
+      - "3306"
+
   wordpress:
+    hostname: wordpress
+
     build:
         context: ./requeriments/wordpress/
         dockerfile: Dockerfile
@@ -20,8 +51,8 @@ services:
       - wp_vol:/var/www/html/wordpress
 
     environment:
-      WORDPRESS_DB_HOST: 
-      MYSQL_ROOT_PASSWORD:
+      #WORDPRESS_DB_HOST: 
+      #MYSQL_ROOT_PASSWORD:
       WORDPRESS_DB_NAME: $DB_NAME
       WORDPRESS_DB_USER: $DB_USER
       WORDPRESS_DB_PASSWORD: $DB_PASSWORD
@@ -32,7 +63,11 @@ services:
     expose:
       - "9000"
 
+    depends_on:
+            - mariadb
+
   nginx:
+    hostname: nginx
     build:
         context: ./requeriments/nginx/
         dockerfile: Dockerfile
@@ -46,7 +81,7 @@ services:
     ports:
       - 443:443
 
-    links:
+    depends_on:
       - wordpress
 
 
@@ -64,3 +99,11 @@ volumes:
       type: none
       device: /home/$USER/data/volumes
      #device: /Users/$USER/data/volumes
+
+  db_vol:
+
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/$USER/data/volumes
