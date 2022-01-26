@@ -1,5 +1,7 @@
 #https://techviewleo.com/how-to-install-mariadb-on-alpine-linux/
 
+FROM alpine:3.11
+
 # Define environment vars
 ARG	MYSQL_DB_USER
 ARG	MYSQL_DB_DATABASE
@@ -16,6 +18,6 @@ RUN 	apk update && apk upgrade && \
 EXPOSE	3306
 
 COPY	tools/ /tools/
-RUN	bash /tools/mariadb-init.sh
+RUN	sh /tools/mariadb-init.sh
 
 RUN 	[""]
