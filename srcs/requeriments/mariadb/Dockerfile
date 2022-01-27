@@ -15,9 +15,9 @@ RUN 	apk update && apk upgrade && \
 	mariadb-client \
 	openrc
 
-EXPOSE	3306
-
 COPY	tools/ /tools/
 RUN	sh /tools/mariadb-init.sh
+
+EXPOSE	3306
 
 RUN 	[""]

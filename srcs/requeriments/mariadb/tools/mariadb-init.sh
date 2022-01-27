@@ -6,17 +6,31 @@
 # Start mariadb with openrc 
 openrc
 touch /run/openrc/sotflevel
-#rc-service mariadb start
-
-# Set the service to be started at system boot
-rc-update add mariadb default
 
 # Initialize mariadb database
 /etc/ini.d/mariadb setup
 
 rc-service mariadb start
 
+# Silenciar openrc issues
+#sed -i "s/group_add_service/#group_add_service/"
 
+# Create configuration file
+
+cat << EOF > /tools/init.sql
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '$MYSQL_DB_ROOT_PASSWORD';
+CREATE DATABASE IF NOT EXISTS $MYSQL_DB_DATABASE;
+CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_DB_PASSWORD';
+GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_DB_USER'@'%';
+GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MYSQL_DB_ROOT_PASSWORD';
+FLUSH PRIVILEGES;
+EOF
+
+# Create Wordpress database
+
+mysql < tools/init.sql
+
+mysql -u root --password=$MYSQL_DB_ROOT_PASSWORD $MYSQL_DB_DATABASE < tools/wordpressdb.sql
 
 
 # Secure mariadb database server
