@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# Initialize mariadb
-#/etc/ini.d/mariadb setup
-
 # Start mariadb with openrc 
 openrc
 touch /run/openrc/sotflevel
 
 # Initialize mariadb database
-/etc/ini.d/mariadb setup
+/etc/init.d/mariadb setup
 
 rc-service mariadb start
 
@@ -21,8 +18,8 @@ cat << EOF > /tools/init.sql
 CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '$MYSQL_DB_ROOT_PASSWORD';
 CREATE DATABASE IF NOT EXISTS $MYSQL_DB_DATABASE;
 CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_DB_PASSWORD';
-GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_DB_USER'@'%';
-GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MYSQL_DB_ROOT_PASSWORD';
+GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_DB_USER'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MYSQL_DB_ROOT_PASSWORD';
 FLUSH PRIVILEGES;
 EOF
 
@@ -34,14 +31,14 @@ mysql -u root --password=$MYSQL_DB_ROOT_PASSWORD $MYSQL_DB_DATABASE < tools/word
 
 
 # Secure mariadb database server
-#mysql_secure_instalation <<EOF
-#$MYSQL_DB_ROOT_PASSWORD
-#N
-#Y
-#N
-#Y
-#Y
-#Y
-#Y
-#EOF
+mysql_secure_instalation <<EOF
+$MYSQL_DB_ROOT_PASSWORD
+N
+Y
+N
+Y
+Y
+Y
+Y
+EOF
 
