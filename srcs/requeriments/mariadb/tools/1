@@ -3,7 +3,7 @@
 # Start mariadb
 openrc
 #cd /run/openrc/
-#touch /run/openrc/sotflevel
+touch /run/openrc/sotflevel
 
 # Initialize mariadb database
 #etc/init.d/mariadb setup
