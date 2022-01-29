@@ -11,16 +11,16 @@ ARG	MYSQL_DB_ROOT_PASSWORD
 
 # Install maridb dependencies
 RUN 	apk update && apk --no-cache upgrade && \
-	#apk add mariadb
-	#mariadb-client
-	apk add mysql --no-cache \
-	mysql-client --no-cache	
-RUN	apk add openrc --no-cache
+		apk add mariadb \
+		mariadb-client \
+		openrc
 
 COPY	tools/ /tools/
-RUN	chmod +x /tools/mariadb-init.sh
-RUN	sh /tools/mariadb-init.sh
+RUN		chmod +x /tools/mariadb-init.sh
+RUN		sh /tools/mariadb-init.sh
 
-#EXPOSE	3306
+EXPOSE	3306
 
-#cmd 	["./tools/run_mariadb.sh"]
+RUN		chmod +x /tools/run_mariadb.sh
+
+CMD 	["./tools/run_mariadb.sh"]
