@@ -22,6 +22,9 @@ services:
     volumes:
       - db_vol:/var/lib/mysql
    
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_DB_ROOT_PASSWORD
+
     restart: always
 
     expose:

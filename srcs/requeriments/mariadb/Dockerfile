@@ -4,10 +4,14 @@
 FROM alpine:3.14
 
 # Define environment vars
-ARG	MYSQL_DB_USER
-ARG	MYSQL_DB_DATABASE
-ARG	MYSQL_DB_PASSWORD
-ARG	MYSQL_DB_ROOT_PASSWORD
+ARG		MYSQL_DB_USER
+ARG		MYSQL_DB_DATABASE
+ARG		MYSQL_DB_PASSWORD
+ARG		MYSQL_DB_ROOT_PASSWORD
+
+# Give /var/lib/mysql permissions
+# RUN 	mkdir /var/lib/mysql
+# RUN		chmod 755 /var/log/
 
 # Install maridb dependencies
 RUN 	apk update && apk --no-cache upgrade && \
