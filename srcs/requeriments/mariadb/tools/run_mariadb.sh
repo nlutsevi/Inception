@@ -11,4 +11,3 @@ mysqld --user=mysql --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mariadb/plugi
 # mysql_install_db –-user=mysql --ldata=/var/lib/mysql
 
 # mysql_install_db --defaults-file=~/.my.cnf
-

@@ -11,10 +11,10 @@ services:
         context: ./requeriments/mariadb/
         dockerfile: Dockerfile
         args:
-            - MYSQL_DB_NAME
-            - MYSQL_DB_USER
-            - MYSQL_DB_PASSWORD
-            - MYSQL_DB_ROOT_PASSWORD
+            - MYSQL_DB_NAME=${MYSQL_DB_NAME}
+            - MYSQL_DB_USER=${MYSQL_DB_USER}
+            - MYSQL_DB_PASSWORD=${MYSQL_DB_PASSWORD}
+            - MYSQL_DB_ROOT_PASSWORD=${MYSQL_DB_ROOT_PASSWORD}
 
     networks:
       - natinet
@@ -37,9 +37,9 @@ services:
         context: ./requeriments/wordpress/
         dockerfile: Dockerfile
         args:
-            - DB_NAME
-            - DB_USER
-            - DB_PASSWORD 
+            - DB_NAME=${DB_NAME}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
 
     networks:
       - natinet
@@ -94,8 +94,8 @@ volumes:
     driver_opts:
       o: bind
       type: none
-     #device: /home/$USER/data/volumes
-      device: /Users/$USER/data/volumes
+      device: /home/$USER/data/volumes
+        #device: /Users/$USER/data/volumes
 
   db_vol:
 
@@ -103,5 +103,5 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      #device: /home/$USER/data/volumes
-      device: /Users/$USER/data/volumes
+      device: /home/$USER/data/volumes
+        #device: /Users/$USER/data/volumes

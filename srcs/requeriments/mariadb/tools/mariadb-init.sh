@@ -20,16 +20,16 @@ EOF
 mysql < tools/init.sql
 
 # Add worldpressdb.sql to our database
-mysql -u root --password=$MYSQL_DB_ROOT_PASSWORD $MYSQL_DB_DATABASE < tools/wordpressdb.sql
+mysql -u root --password=$MYSQL_DB_ROOT_PASSWORD < tools/wordpressdb.sql
 
 # Secure mariadb database server
-mysql_secure_installation <<EOF
-$MYSQL_DB_ROOT_PASSWORD
-N
-Y
-N
-Y
-Y
-Y
-Y
-EOF
+#mysql_secure_installation <<EOF
+#$MYSQL_DB_ROOT_PASSWORD
+#N
+#Y
+#N
+#Y
+#Y
+#Y
+#Y
+#EOF
