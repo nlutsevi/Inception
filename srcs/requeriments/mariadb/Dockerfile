@@ -4,10 +4,10 @@
 FROM alpine:3.14
 
 # Define environment vars
-ARG		MYSQL_DB_USER
-ARG		MYSQL_DB_DATABASE
-ARG		MYSQL_DB_PASSWORD
-ARG		MYSQL_DB_ROOT_PASSWORD
+ARG		MYSQL_USER
+ARG		MYSQL_DATABASE
+ARG		MYSQL_PASSWORD
+ARG		MYSQL_ROOT_PASSWORD
 
 # Give /var/lib/mysql permissions
 # RUN 	mkdir /var/lib/mysql

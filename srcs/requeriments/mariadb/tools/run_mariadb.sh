@@ -4,7 +4,7 @@
 
 # mysqld --print-defaults
 
-chmod 755 /var/lib/mysql
+#chmod 755 /var/lib/mysql
 
 mysqld --user=mysql --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mariadb/plugin --pid-file=/run/mysqld/mariadb.pid --port=3306 --log-error=/var/log/mysqld.log --log-warnings=4 --skip-networking=0
 

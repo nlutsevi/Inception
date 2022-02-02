@@ -11,10 +11,10 @@ services:
         context: ./requeriments/mariadb/
         dockerfile: Dockerfile
         args:
-            - MYSQL_DB_NAME=${MYSQL_DB_NAME}
-            - MYSQL_DB_USER=${MYSQL_DB_USER}
-            - MYSQL_DB_PASSWORD=${MYSQL_DB_PASSWORD}
-            - MYSQL_DB_ROOT_PASSWORD=${MYSQL_DB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
     networks:
       - natinet
@@ -23,7 +23,10 @@ services:
       - db_vol:/var/lib/mysql
    
     environment:
-      MYSQL_ROOT_PASSWORD: $MYSQL_DB_ROOT_PASSWORD
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
     restart: always
 
@@ -94,8 +97,8 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/$USER/data/volumes
-        #device: /Users/$USER/data/volumes
+      #device: /home/$USER/data/volumes
+      device: /Users/$USER/data/volumes
 
   db_vol:
 
@@ -103,5 +106,5 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/$USER/data/volumes
-        #device: /Users/$USER/data/volumes
+      #device: /home/$USER/data/volumes
+      device: /Users/$USER/data/volumes

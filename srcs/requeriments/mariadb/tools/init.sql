@@ -1,0 +1,6 @@
+-- CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY 'root_pass';
+-- CREATE DATABASE IF NOT EXISTS bbdd;
+-- CREATE USER 'user'@'%' IDENTIFIED BY 'pass';
+-- GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO 'user'@'%';
+-- GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root_pass';
+-- FLUSH PRIVILEGES;
