@@ -98,7 +98,7 @@ volumes:
       o: bind
       type: none
       #device: /home/$USER/data/volumes
-      device: /Users/$USER/data/volumes
+      device: /Users/$USER/data/wp_vol
 
   db_vol:
 
@@ -107,4 +107,4 @@ volumes:
       o: bind
       type: none
       #device: /home/$USER/data/volumes
-      device: /Users/$USER/data/volumes
+      device: /Users/$USER/data/db_vol
