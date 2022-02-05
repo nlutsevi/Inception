@@ -11,4 +11,4 @@ rc-service mariadb start
 mysql < tools/init.sql
 
 # Add worldpressdb.sql to our database
-mysql -u root --password='rootpass' 'bbdd' < tools/wpbbdd.sql
+#mysql -u root --password='rootpass' 'bbdd' < tools/wpbbdd.sql

@@ -1,10 +1,6 @@
 #!bin/bash
 
-cd ..
-
-cd srcs/
-
-docker-compose down
+docker stop $(docker ps -a -q) 2>/dev/null 
 
 docker rm -vf $(docker ps -aq -f)
 

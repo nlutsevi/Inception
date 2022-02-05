@@ -4,20 +4,12 @@ WHITE=\033[0;37m
 B=`tput bold`
 
 run:
-	@cd /Users/${USER}
-	@mkdir data
-	@chmod 777 data
-	@cd data
-	@mkdir wp_vol
-	@chmod 777 wp_vol
-	@mkdir db_vol
-	@chmod 777 db_vol
-	@cd /Users/${USER}/Desktop/ft_inception/srcs
-	@docker-compose up -d
+	@cd /Users/${USER} ; mkdir data ; chmod 777 data
+	@cd /Users/${USER}/data ; mkdir wp_vol db_vol ; chmod 777 wp_vol db_vol
+	@cd /Users/${USER}/Desktop/ft_inception/srcs ; docker-compose up -d
 
 build:
-	@cd /Users/${USER}/Desktop/ft_inception/srcs
-	@docker-compose up -d
+	@cd /Users/${USER}/Desktop/ft_inception/srcs ; docker-compose up -d
 
 clean:
 	clear
