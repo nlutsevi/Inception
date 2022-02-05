@@ -18,10 +18,6 @@ RUN openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout /etc/nginx/ssl/loc
 # Upload new nginx.conf
 COPY tools/nginx.conf /etc/nginx/
 COPY tools/default.conf /etc/nginx/conf.d/
-#Docker-compose
-#COPY /requeriments/nginx/tools/nginx.conf /etc/nginx/
-#COPY /requeriments/nginx/tools/default.conf /etc/nginx/http.d/
-
 
 # Ports
 EXPOSE 443
