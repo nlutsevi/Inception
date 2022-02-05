@@ -1,10 +1,8 @@
 version: '3.0'
 
 services:
-
   mariadb:
     hostname: mariadb
-
     build:
         context: ./requeriments/mariadb/
         dockerfile: Dockerfile
@@ -13,27 +11,21 @@ services:
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-
     networks:
       - natinet
-
     volumes:
       - db_vol:/var/lib/mysql
-   
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
     restart: always
-
     expose:
       - "3306"
 
   wordpress:
     hostname: wordpress
-
     build:
         context: ./requeriments/wordpress/
         dockerfile: Dockerfile
@@ -41,24 +33,18 @@ services:
             - DB_NAME=${DB_NAME}
             - DB_USER=${DB_USER}
             - DB_PASSWORD=${DB_PASSWORD}
-
     networks:
       - natinet
-
     volumes:
       - wp_vol:/var/www/html/wordpress
-
     environment:
       WORDPRESS_DB_NAME: $DB_NAME
       WORDPRESS_DB_USER: $DB_USER
       WORDPRESS_DB_PASSWORD: $DB_PASSWORD
-      WORDPRESS_TABLE_PREFIX: wp_
-    
+      WORDPRESS_TABLE_PREFIX: wp_ 
     restart: always
-
     expose:
       - "9000"
-
     depends_on:
             - mariadb
 
@@ -67,28 +53,21 @@ services:
     build:
         context: ./requeriments/nginx/
         dockerfile: Dockerfile
-
     networks:
       - natinet
-
     volumes:
       - wp_vol:/var/www/html/wordpress
-
     ports:
       - "443:443"
-
     depends_on:
       - wordpress
-
 
 networks:
   natinet:
     driver: bridge
 
-# Mounting named volumes can persist data after we restart or remove a container. And they are also accesible by other containers. 
 volumes:
   wp_vol:
-
     driver: local
     driver_opts:
       o: bind
@@ -97,7 +76,6 @@ volumes:
       device: /Users/$USER/data/wp_vol
 
   db_vol:
-
     driver: local
     driver_opts:
       o: bind

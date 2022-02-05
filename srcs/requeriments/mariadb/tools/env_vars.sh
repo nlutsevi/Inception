@@ -1,4 +1,5 @@
 #!/bin/sh
+
 sed -i "s/bbdd/$MYSQL_DATABASE/" tools/init.sql
 sed -i "s/user/$MYSQL_USER/" tools/init.sql
 sed -i "s/pass/$MYSQL_PASSWORD/" tools/init.sql
