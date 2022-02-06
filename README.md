@@ -13,7 +13,7 @@ Here is the diagram of the result:
 
 https://www.nakivo.com/blog/use-virtualbox-quick-overview/
 
-# 2. Install and configure sudo
+#### 2. Install and configure sudo
 
 ```bash
 su -
@@ -22,70 +22,85 @@ apt-get install sudo
 usermod -aG sudo USERNAME
 ```
 
-3. Install vim
+#### 3. Install vim
 
 ```bash
 apt-get install vim
 ```
 
-4. Install and configure SSH
+#### 4. Install and configure SSH
 
 ```bash
 sudo apt install openssh-server
 ```
-Set up an SSH Port
+  Set up a ssh port
 ```bash
 sudo vim /etc/ssh/sshd_config
 ```
-Find line 13 and uncomment the port
+  Find the port and uncomment it
 ```bash
 Port 22
 ```
-Restart SSH 
+  Restart ssh
 ```bash
 sudo service sshd restart
 ```
-Check conection status
+  Check ssh conection status
 ```bash
 sudo service sshd status
 ```
-Find out your host
+  Find out your host
 ```bash
 hostname -I
 ```
-Connect via ssh from outside of your virtual machine
+  Connect via ssh from outside of your virtual machine
 ```bash
 ssh USERNAME@HOST -p 22
 ```
 
+#### 5. Install docker
 
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
+Install packages to allow apt to use a repository over HTTPS
 ```bash
-pip install foobar
+sudo apt-get install \
+  ca-certificates \
+  curl \
+  gnupg \
+  lsb-release
+```
+Add Docker’s official GPG key
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+Use the following command to set up the stable repository
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+Install the latest version of Docker Engine and containerd
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+#### 5. Install docker-compose
+Download the current stable release of Docker Compose
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+Apply executable permissions to the binary
+```bash
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+#### 6. Install git
+```bash
+sudo apt-get install git
+```
+
+#### 7. Install make
+```bash
+sudo apt-get install make
 ```
 
 ## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
