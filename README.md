@@ -1,5 +1,6 @@
 # Inception
 
+This project consists on building Nginx, Wordpress and MariaDB services on separate containers based on Apline Linux, with a volume for  WordPress Database and Wordpress website files, and establishing a connection between them through a docker-network.
 
 
 Here is the diagram of the result:
