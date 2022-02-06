@@ -8,7 +8,7 @@ touch /run/openrc/softlevel
 rc-service mariadb start
 
 # Create root and normal user for our database
-mysql < tools/init.sql
+mysql -u root < tools/init.sql
 
 # Add worldpressdb.sql to our database
 mysql -u root --password='rootpass' 'bbdd' < tools/wpbbdd.sql
