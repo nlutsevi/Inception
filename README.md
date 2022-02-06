@@ -1,7 +1,6 @@
 # Inception
 
-This project consists on setting up a small infrastructure composed of different
-services, by virtualizing several docker images under specific rules. The whole project is done in a virtual machine.
+
 
 Here is the diagram of the result:
 
@@ -104,6 +103,7 @@ sudo apt-get install make
 ```
 
 ## Usage
-Clone the repository in your freshly installed virtual machine.
-```make run
+Clone the repository in your freshly installed virtual machine
+```bash
+make run
 ```
