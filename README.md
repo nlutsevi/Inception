@@ -104,3 +104,6 @@ sudo apt-get install make
 ```
 
 ## Usage
+Clone the repository in your freshly installed virtual machine.
+```make run
+```
