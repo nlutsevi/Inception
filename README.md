@@ -1,7 +1,7 @@
 # Inception
 
 This project consists on setting up a small infrastructure composed of different
-services under specific rules. The whole project is done in a virtual machine.
+services, by virtualizing several docker images under specific rules. The whole project is done in a virtual machine.
 
 Here is the diagram of the result:
 
