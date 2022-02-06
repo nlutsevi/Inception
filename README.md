@@ -5,6 +5,7 @@ services under specific rules. The whole project is done in a virtual machine.
 
 Here is the diagram of the result:
 
+![Screenshot 2022-02-06 at 03 01 39](https://user-images.githubusercontent.com/60663416/152665185-7ccac267-5f7c-48b5-a0e5-df0f48d1713b.png)
 
 
 ## Installation
